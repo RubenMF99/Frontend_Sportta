@@ -42,6 +42,7 @@ const Sesion = ()=> {
           
           const {data}= await AxiosClient.post(`/login`,user);
           localStorage.setItem('token',data.token);
+          localStorage.setItem('id',data.user[0].id);
           setAuthUser(data.user);
          if(data.user[0].id){
               navigate("/users");

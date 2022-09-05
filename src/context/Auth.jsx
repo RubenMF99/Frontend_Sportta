@@ -1,5 +1,5 @@
 import React,{useState,useEffect,createContext} from 'react'
-import axios from 'axios'
+import AxiosClient from '../components/AxiosClient/AxiosClient';
 const AuthContext = createContext();
 
 const AuthProvider = ({children})=> {
@@ -23,9 +23,8 @@ const AuthProvider = ({children})=> {
                 }
             }
             try{
-                const url = process.env.REACT_APP_RUTA;
-                const response = await axios.get(`${url}/api/auth/user-profile`,config);
-                setAuthUser(response.data);
+               // const response = await AxiosClient.get('/profile',config);
+                //setAuthUser(response.data);
             }catch(error){
                 setAuthUser({});
                 console.log(error);

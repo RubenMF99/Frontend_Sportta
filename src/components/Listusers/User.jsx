@@ -1,8 +1,14 @@
 import React from 'react'
 
-const User = () => {
+const User = ({user}) => {
   return (
-    <div>User</div>
+    <tr>
+                 <td>{user.id}</td>
+                 <td>{user.name}</td>
+                 <td>{user.cell}</td>
+                 <td>{user.email}</td>
+                 
+      </tr>
   )
 }
 

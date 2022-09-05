@@ -3,10 +3,11 @@ import  useAuth from '../hooks/useAuth';
 
 const  RouteProtected = ()=> {
     const {authUser,loading} = useAuth();
+    const id = localStorage.getItem('id');
     if(loading) return("Loading");
     return (
         <>
-            {authUser[0].id ?<Outlet/>:<Navigate to="/"/>}
+            {id ?<Outlet/>:<Navigate to="/"/>}
         </>
     )
 }
