@@ -10,10 +10,10 @@ const Listusers = () => {
     name: "",
     cell: "",
     email: "",
-    password: "",
-    repeatPassword: "",
+    password: ""
   });
-  const { name, cell, email, password, repeatPassword } = registrarU;
+  const [ repeatPassword,setRepeatPassword] = useState('');
+  const { name, cell, email, password } = registrarU;
   const [users, setUsers] = useState([]);
   const { idControl } = useAuth();
   const [control,setControl] = useState('');
@@ -53,8 +53,8 @@ const Listusers = () => {
       cell: "",
       email: "",
       password: "",
-      repeatPassword: "",
     });
+    setRepeatPassword('');
   };
 
   const register_user = async () => {
@@ -111,7 +111,7 @@ const Listusers = () => {
           <table className="table table-responsive">
             <tbody>
               {users?.map((user) => (
-                <User user={user} key={user.id} />
+                <User user={user} setControl={setControl} key={user.id} />
               ))}
             </tbody>
           </table>
@@ -193,7 +193,7 @@ const Listusers = () => {
                       className="form-control mb-3"
                       value={repeatPassword}
                       name="repeatPassword"
-                      onChange={handleChange}
+                      onChange={(e)=>{setRepeatPassword(e.target.value)}}
                     />
                   </label>
                 </Col>

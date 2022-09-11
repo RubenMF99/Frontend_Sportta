@@ -39,7 +39,7 @@ const Register = ()=> {
             return;
         }
        register_user();
-        //reseteamos el forma
+        //reseteamos el form
         setregistrar({
             name:"",
             cell:"",
