@@ -4,6 +4,7 @@ import useAuth from "../../hooks/useAuth";
 import { Button, Modal, Row, Col, Container } from "react-bootstrap";
 import User from "./User";
 import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 
 const Listusers = () => {
   const [registrarU, setregistrar] = useState({
@@ -18,6 +19,7 @@ const Listusers = () => {
   const { idControl } = useAuth();
   const [control,setControl] = useState('');
   const [show, setShow] = useState(false);
+  let navigate = useNavigate();
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -70,6 +72,10 @@ const Listusers = () => {
     }
   };
 
+  const logout = ()=>{
+      localStorage.clear();
+      navigate("/");
+  }
   useEffect(() => {
     const Listusers = async () => {
       const token = localStorage.getItem("token");
@@ -93,7 +99,7 @@ const Listusers = () => {
     <div className="container">
       <div className="row">
         <div className="col-2 mt-5 mx-3">
-          <button className="btn btn-success">Cerrar Sesion</button>
+          <button className="btn btn-success" onClick={logout}>Cerrar Sesion</button>
         </div>
         <div className="col-2 mt-5 mx-1">
           <button className="btn btn-primary" onClick={handleShow}>
