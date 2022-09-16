@@ -58,7 +58,6 @@ const Listusers = () => {
     });
     setRepeatPassword('');
   };
-
   const register_user = async () => {
     try {
       const response = await AxiosClient.post("/register", registrarU);
@@ -72,7 +71,21 @@ const Listusers = () => {
     }
   };
 
-  const logout = ()=>{
+  const logout = async()=>{
+      try{
+        const token = localStorage.getItem("token");
+      if (!token) return;
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      };
+         await AxiosClient.get("/logout",config);
+  
+      }catch(error){
+        console.log(error);
+      }
       localStorage.clear();
       navigate("/");
   }
